@@ -1,0 +1,17 @@
+/*
+ * use "call" inside method for calling this object. 
+ */
+
+
+/* DO NOT USE
+ *
+ * the object would can exist already or crash properties.
+ * Do not add new properties for fixed or hided object.
+ */
+obj.temporary = f;
+var result = obj.temporary(arg1, arg2, arg3);
+delete obj.temporary;
+
+// Use the call methods which are deleted or edited or overrided.
+f.call(obj, arg1, arg2, arg3);  // f(arg1, arg2, arg3); 
+
