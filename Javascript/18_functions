@@ -1,0 +1,39 @@
+/*
+* Understand function, method, constructor.
+*/
+
+/*
+* 1. call function
+*/
+function hello(username) {
+    return "hello, " + username;    //if username use with "this", "this" object is "undefined" from es5 strict mode.
+}
+hello("Keyser Soze");
+
+
+/*
+* 2. call method : THIS
+*/
+var obj = {
+    hello: function() {
+        return "hello, " + this.username;    //"this" is used to access to object properties.
+    },
+    username: "Hans Gruber"
+};
+var obj2 = {
+    hello: obj.hello,
+    username: "Boo Radley"
+};
+
+obj.hello();
+obj2.hello();
+
+/*
+* 3. call constructor. initialize object.
+*/
+function User(name, paswordHash) {
+    this.name = name;
+    this.passwordHash = passwordHash;
+}
+var u = new User("sfalken","0ef33ae791048ec43b492d3vc0191394"); //send new object to this.
+u.name;    
