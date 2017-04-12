@@ -1,0 +1,87 @@
+/*
+* arguments or return values call function named callback function.
+*/
+
+function compareNumbers(x, y) {
+    if (x < y) {
+        retunr -1;
+    }    
+    if (x > y) {
+        return 1;
+    }
+    return 0;
+}
+[3,1,4,1,5,9].sort(compareNumbers);
+
+
+[3,1,4,1,5,9].sort(function compareNumbers(x, y) {
+    if (x < y) {
+        retunr -1;
+    }    
+    if (x > y) {
+        return 1;
+    }
+    return 0;
+});
+
+
+/*
+ * Example1
+ */
+var names = ["Fred", "Wilma", "Pebles"];
+var upper = [];
+for (var i = 0, n =  names.length; i < n; i++) {
+    upeer[i] = names[i].toUpperCase();
+}
+
+upper;
+// !RECOMMEND as Higher-order function.
+var names = ["Fred", "Wilma", "Pebles"];
+var upper = names.map(function(name) {
+    return name.toUpperCase();
+});
+upper;
+
+
+/* 
+ * Example2
+ */
+var aIndex = "a".charCodeAt(0); //97
+var alphabet = "";
+for (var i = 0; i < 26; i++) {
+    alphabet += String.fromCharCode(aIndex + i);
+}
+alphabet;
+
+var digits = "";
+for (var i = 0; i <10; i++) {
+    digits += i;
+}
+digits;
+
+var random = "";
+for (var i = 0; i< 8; i++) {
+    random += String.fromCharCode(Math.floor(Math.random() * 26) + aIndex);
+}
+
+// !RECOMMEND as Higher-order function.
+
+var alphabet = buildString(26, function(i) {
+    return String.fromCharCode(aIndex + i);
+});
+
+var digits = buildString(26, function(i) {
+    return i;;
+});
+
+var random = buildString(26, function(i) {
+    return String.fromCharCode(Math.floor(Math.random() * 26) + aIndex);;
+});
+
+function buildString(n, callback) {
+    var result = "";
+    for (var i = 0; i< n; i++) {
+        result += callback(i); 
+    }
+    return result;
+}
