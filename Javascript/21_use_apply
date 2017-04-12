@@ -1,0 +1,24 @@
+/*
+ * use apply method
+ */
+
+//1. can use for variable-arity
+var scores = getAllScores();
+average.apply(null, scores);  //average(scores[0], scores[1], scores[2]);
+
+
+var buffer = {
+  state: [],
+  append: function() {
+    for (var i = 0, n = arguments.length; i < n; i++) {
+      this.state.push(arguments[i]);
+    }
+  }
+};
+
+//2. can use for variable-arity method
+buffer.append('Hello, ');
+buffer.append(firstName, ' ', lastName, '!');
+buffer.append(newline);
+//same as
+buffer.append.apply(buffer, gerInputStrings());
