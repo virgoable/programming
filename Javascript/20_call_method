@@ -1,17 +1,36 @@
 /*
- * use "call" inside method for calling this object. 
+ * use "call method" for calling function of this object.
  */
 
-
-/* DO NOT USE
- *
- * the object would can exist already or crash properties.
- * Do not add new properties for fixed or hided object.
- */
-obj.temporary = f;
+//! DO NOT USE
+obj.temporary =f; //temporary function might be defined.
 var result = obj.temporary(arg1, arg2, arg3);
 delete obj.temporary;
 
-// Use the call methods which are deleted or edited or overrided.
-f.call(obj, arg1, arg2, arg3);  // f(arg1, arg2, arg3); 
+// !RECOMMEND
+f.call(obj, arg1, arg2, arg3);  // === f(arg1, arg2, arg3)
 
+
+//1. call method can call methods which are deleted or edited or overrided.
+var hasOwnProperty = {}.hasOwnProperty;
+dict.foo = 1;
+delete dict.hasOwnProperty;
+hasOwnProperty.call(dict, 'foo'); //true
+hasOwnProperty.call(dict, 'hasOwnProperty');  //false
+
+
+//2. useful for defining higher-order function.
+var table = {
+  entries: [],
+  addEntry: function(key, value) {
+    this.entries.push({key: key, value: value });
+  },
+  forEach: function(f, thisArg) {
+    var entries = this.entries;
+    for (var i = 0, n = entries.length; i < n; i++) {
+      var entry = entries[i];
+      f.call(thisArg, entry.key, entry.value, i);
+    }
+  }
+}
+table1.forEach(table2.addEntry, table2);
