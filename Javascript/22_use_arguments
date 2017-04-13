@@ -1,0 +1,23 @@
+/* 
+ * use arguments for creating variable-arity function
+ * To use, you have to use apply because it is not support varibale-fixed method of such as array.
+ */
+
+function averageOfArray(a) {
+  for (var i = 0, sum = 0, n = a.length; i < n; i++) {
+    sum += a[i];
+  }
+  return sum /n;
+}  
+
+function average() {
+  for (var i = 0, sum = 0, n = arguments.length; i < n; i++) {
+    sum += arguments[i];
+  }
+  return sum/n;
+}
+
+// to support fixed variables, use the wrapper.
+function average() {
+    return averageOfArray(arguments);
+}
